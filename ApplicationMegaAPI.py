@@ -6,10 +6,7 @@ Created on Fri Sep 23 00:49:08 2022
 """
 
 import requests
-
-
-class Apisys():  
-    
+class Apisys():      
     def __init__(self):
         self.done = False
         self.API_KEY = input("Input your API KEY: ")
@@ -124,7 +121,7 @@ class Apisys():
                 print("Updated")
                 
         elif(self.choice == 6):
-            print("You selected a Sales order")
+            print("You selected a Sales order all your previous Data will be inserted here")
             url_sales = "https://api.megaventory.com/v2017a/SalesOrder/SalesOrderUpdate"
             self.inventoryID = input("Enter Inventory Location ID (enter 1 if it is unknown): ")
             self.row_quantity = int(input("Enter row Quantity: "))            
