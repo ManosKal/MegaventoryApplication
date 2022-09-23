@@ -160,7 +160,3 @@ class Apisys():
         
 new_entry = Apisys()
 new_entry.loop()
-
-
-    
-    
