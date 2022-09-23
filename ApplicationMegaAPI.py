@@ -126,27 +126,26 @@ class Apisys():
         elif(self.choice == 6):
             print("You selected a Sales order")
             url_sales = "https://api.megaventory.com/v2017a/SalesOrder/SalesOrderUpdate"
-            self.order_status = input("Enter order status: ")
-            self.inventoryID = input("Enter Inventory Location ID (enter 0 if it is unknown): ")
-            self.row_quantity = int(input("Enter row Quantity: "))
+            self.inventoryID = input("Enter Inventory Location ID (enter 1 if it is unknown): ")
+            self.row_quantity = int(input("Enter row Quantity: "))            
             SalesOrderUpdate = {
-                "APIKEY": self.API_KEY,
-                "mvSalesOrder": {
-                "SalesOrderStatus": self.order_status,     #error
-                "SalesOrderClientName": self.sc_name,
-                "SalesOrderShippingAddress": self.sc_address, 
-                "SalesOrderInventoryLocationID": self.inventoryID,
-                "SalesOrderDetails": [
-                    {
-                        "SalesOrderRowProductSKU ": self.p_sku,
-                        "SalesOrderRowQuantity ": self.row_quantity,
+                  "APIKEY": self.API_KEY,
+                  "mvSalesOrder": {
+                    "SalesOrderClientName": self.sc_name,
+                    "SalesOrderInventoryLocationID": self.inventoryID,
+                    "SalesOrderShippingAddress": self.sc_address,
+                    "SalesOrderStatus": "Verified",
+                    "SalesOrderDetails": [
+                      {
+                        "SalesOrderRowProductSKU": self.p_sku,
+                        "SalesOrderRowQuantity": self.row_quantity,
                         "SalesOrderRowTotalDiscountAmount": self.dis_value,
-                        "SalesOrderTotalTaxAmount ": self.tax_value
-                    }
-                ]
-                },
-                "mvRecordAction": "Insert" 
-            }
+                        "SalesOrderTotalTaxAmount": self.tax_value
+                      }
+                    ]
+                  },
+                  "mvRecordAction": "Insert"
+                }
             r_salesOrder = requests.post(url_sales, json = SalesOrderUpdate)
             print(r_salesOrder.text)
 
